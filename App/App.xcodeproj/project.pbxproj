@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,7 @@
 		B76170AD25C1A8ED0023502A /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B76170AC25C1A8ED0023502A /* Feed.storyboard */; };
 		B76170B225C1AC9F0023502A /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76170B125C1AC9F0023502A /* FeedManager.swift */; };
 		B76170B625C1AD3E0023502A /* MockFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76170B525C1AD3E0023502A /* MockFeedManager.swift */; };
-		B76EF0AA25C2162E00061F7A /* LoadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76EF0A925C2162E00061F7A /* LoadImageView.swift */; };
+		B77D3E3225C2C02000DD2809 /* LoadingImageView in Frameworks */ = {isa = PBXBuildFile; productRef = B77D3E3125C2C02000DD2809 /* LoadingImageView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,6 @@
 		B76170AC25C1A8ED0023502A /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		B76170B125C1AC9F0023502A /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		B76170B525C1AD3E0023502A /* MockFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFeedManager.swift; sourceTree = "<group>"; };
-		B76EF0A925C2162E00061F7A /* LoadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B77D3E3225C2C02000DD2809 /* LoadingImageView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +56,7 @@
 			children = (
 				B761707C25C1996B0023502A /* App */,
 				B761707B25C1996B0023502A /* Products */,
+				B77D3E3025C2C02000DD2809 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				B76170A025C1A75F0023502A /* BaseViewController.swift */,
-				B76EF0A925C2162E00061F7A /* LoadImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -134,6 +134,13 @@
 				B76170B525C1AD3E0023502A /* MockFeedManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		B77D3E3025C2C02000DD2809 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +159,9 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				B77D3E3125C2C02000DD2809 /* LoadingImageView */,
+			);
 			productName = App;
 			productReference = B761707A25C1996B0023502A /* App.app */;
 			productType = "com.apple.product-type.application";
@@ -211,7 +221,6 @@
 				B76170B625C1AD3E0023502A /* MockFeedManager.swift in Sources */,
 				B76170A125C1A75F0023502A /* BaseViewController.swift in Sources */,
 				B761709C25C1A4780023502A /* FeedViewController.swift in Sources */,
-				B76EF0AA25C2162E00061F7A /* LoadImageView.swift in Sources */,
 				B76170A725C1A8200023502A /* FeedPost.swift in Sources */,
 				B76170B225C1AC9F0023502A /* FeedManager.swift in Sources */,
 				B761707E25C1996B0023502A /* AppDelegate.swift in Sources */,
@@ -417,6 +426,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B77D3E3125C2C02000DD2809 /* LoadingImageView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoadingImageView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B761707225C1996B0023502A /* Project object */;
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LoadingImageView
 
 final class FeedCell: UITableViewCell {
     

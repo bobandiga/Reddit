@@ -1,17 +1,10 @@
-//
-//  LoadImageView.swift
-//  App
-//
-//  Created by Максим Шаптала on 27.01.2021.
-//
-
 import UIKit
 
-final class LoadImageView: UIImageView {
+final public class LoadImageView: UIImageView {
     
     private var task: URLSessionTask?
     
-    func loadImage(string: String, cache: URLCache? = nil) {
+    public func loadImage(string: String, cache: URLCache? = nil) {
         guard let url = URL(string: string) else { return }
         let cache = cache ?? URLCache.shared
         let request = URLRequest(url: url)
@@ -38,7 +31,7 @@ final class LoadImageView: UIImageView {
         task?.resume()
     }
     
-    func cancelLoad() {
+    public func cancelLoad() {
         task?.cancel()
         self.image = nil
     }
