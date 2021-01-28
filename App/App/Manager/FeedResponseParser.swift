@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import TrueDateFormatter
 
 struct TopResponse: Decodable {
     let data: TopChildred
@@ -15,7 +16,15 @@ struct TopResponse: Decodable {
     }
     
     var posts: [FeedPost] {
-        return data.children.map { FeedPost(title: $0.data.title, author: $0.data.author, thumbPath: $0.data.thumbnail, comments: $0.data.comments, createdDate: "") }
+        return data.children.map { FeedPost(title: $0.data.title, author: $0.data.author, thumbPath: $0.data.thumbnail, comments: $0.data.comments, createdDate: mapIntervalToDate($0.data.created)) }
+    }
+    
+    private func mapIntervalToDate(_ timeInterval: TimeInterval?) -> String? {
+        
+        guard let timeInterval = timeInterval else { return nil }
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return .toElapsedTime(from: date)
+        
     }
 }
 
