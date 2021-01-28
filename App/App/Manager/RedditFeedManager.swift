@@ -18,20 +18,11 @@ enum FeedError: String, Error {
 final class RedditFeedManager: FeedManager {
     
     private lazy var feedService: NetworkService = FeedService()
-    var currentPage: String?
+    var currentPage: SafeType<String?> = SafeType(nil)
     var dataSource: SafeArray<FeedPost> = SafeArray()
-
-    private var isLoading: SafeType<Bool> = SafeType(false)
     
     func loadMore(_ completion: @escaping (Error?) -> Void) {
-        guard isLoading.wrappedValue == false else {
-            DispatchQueue.main.async {
-                completion(FeedError.isLoading)
-            }
-            return
-        }
-        isLoading.wrappedValue = true
-        feedService.fetchNext(after: currentPage) { [weak self] (result) in
+        feedService.fetchNext(after: currentPage.wrappedValue) { [weak self] (result) in
             switch result {
             case .success(let r):
                 guard let response = r else {
@@ -42,7 +33,7 @@ final class RedditFeedManager: FeedManager {
                 }
                 
                 if let data = try? JSONDecoder().decode(TopResponse.self, from: response.data) {
-                    self?.currentPage = data.after
+                    self?.currentPage.wrappedValue = data.after
                     self?.dataSource.append(data.posts)
                 }
                 
@@ -54,16 +45,10 @@ final class RedditFeedManager: FeedManager {
                     completion(erorr)
                 }
             }
-            self?.isLoading.wrappedValue = false
         }
     }
     
     func loadFirst(_ completion: @escaping (Error?) -> Void) {
-        guard !isLoading.wrappedValue else {
-            completion(FeedError.isLoading)
-            return
-        }
-        isLoading.wrappedValue = true
         feedService.fetchFeed { [weak self] (result) in
             switch result {
             case .success(let r):
@@ -75,7 +60,7 @@ final class RedditFeedManager: FeedManager {
                 }
                 
                 if let data = try? JSONDecoder().decode(TopResponse.self, from: response.data) {
-                    self?.currentPage = data.after
+                    self?.currentPage.wrappedValue = data.after
                     self?.dataSource.set(data.posts)
                 }
                 
@@ -87,7 +72,6 @@ final class RedditFeedManager: FeedManager {
                     completion(erorr)
                 }
             }
-            self?.isLoading.wrappedValue = false
         }
     }
     

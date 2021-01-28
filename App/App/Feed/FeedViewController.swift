@@ -16,6 +16,8 @@ final class FeedViewController: UITableViewController {
         return control
     }()
     
+    private var viewDidApper: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         feedManager.loadFirst { [unowned self] (e) in
@@ -26,6 +28,11 @@ final class FeedViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = controll
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewDidApper = true
     }
     
     //
@@ -43,8 +50,7 @@ final class FeedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //guard feedManager.canLoadMore else { return }
-        return
+        guard viewDidApper else { return }
         if indexPath.row == feedManager.dataSource.count - 1 {
             showSpinner()
             feedManager.loadMore { [unowned self] (e) in

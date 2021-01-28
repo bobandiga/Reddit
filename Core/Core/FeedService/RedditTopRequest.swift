@@ -13,7 +13,7 @@ struct RedditTopRequest: Requestable {
     
     var endpoint: String = "/top.json"
     
-    var parameters: Parameters = ["limit" : "10", "count" : "10"]
+    var parameters: Parameters = ["limit" : "100", "count" : "100"]
     
     var requestType: RequestType = .simple
     
