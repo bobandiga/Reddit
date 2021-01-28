@@ -20,6 +20,7 @@
 		B76170B225C1AC9F0023502A /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76170B125C1AC9F0023502A /* FeedManager.swift */; };
 		B76170B625C1AD3E0023502A /* MockFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76170B525C1AD3E0023502A /* MockFeedManager.swift */; };
 		B77D3E3225C2C02000DD2809 /* LoadingImageView in Frameworks */ = {isa = PBXBuildFile; productRef = B77D3E3125C2C02000DD2809 /* LoadingImageView */; };
+		B77D3E5F25C2C10200DD2809 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77D3E5E25C2C10200DD2809 /* Core.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		B76170AC25C1A8ED0023502A /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		B76170B125C1AC9F0023502A /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		B76170B525C1AD3E0023502A /* MockFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFeedManager.swift; sourceTree = "<group>"; };
+		B77D3E5E25C2C10200DD2809 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B77D3E3225C2C02000DD2809 /* LoadingImageView in Frameworks */,
+				B77D3E5F25C2C10200DD2809 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +142,7 @@
 		B77D3E3025C2C02000DD2809 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B77D3E5E25C2C10200DD2809 /* Core.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -374,6 +378,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5D87AV9NX;
 				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,7 +386,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mx.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -393,6 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N5D87AV9NX;
 				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,7 +406,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mx.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
