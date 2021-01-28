@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import CoreType
 
 protocol FeedManager {
-    var dataSource: [FeedPost] { get }
-    func loadMore(_ completion: @escaping ([FeedPost]) -> Void)
-    func loadFirst(_ completion: @escaping () -> Void)
+    var dataSource: SafeArray<FeedPost> { get }
+    func loadMore(_ completion: @escaping (Error?) -> Void)
+    func loadFirst(_ completion: @escaping (Error?) -> Void)
 }
 
 

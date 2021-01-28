@@ -9,12 +9,19 @@ import UIKit
 
 final class FeedViewController: UITableViewController {
     
-    private lazy var feedManager: FeedManager = MockFeedManager()
+    private lazy var feedManager: FeedManager = RedditFeedManager()
     private lazy var controll: UIRefreshControl = { [unowned self] in
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(didRefreshControll), for: .valueChanged)
         return control
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        feedManager.loadFirst { [unowned self] (e) in
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +43,11 @@ final class FeedViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //guard feedManager.canLoadMore else { return }
+        return
         if indexPath.row == feedManager.dataSource.count - 1 {
             showSpinner()
-            feedManager.loadMore { [unowned self] (posts) in
+            feedManager.loadMore { [unowned self] (e) in
                 hideSpinner()
                 tableView.reloadData()
             }
@@ -51,7 +60,7 @@ private extension FeedViewController {
     
     @objc
     func didRefreshControll() {
-        feedManager.loadFirst { [unowned self] in
+        feedManager.loadFirst { [unowned self] (e) in
             refreshControl?.endRefreshing()
             tableView.reloadData()
         }

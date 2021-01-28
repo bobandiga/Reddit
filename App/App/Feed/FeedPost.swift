@@ -8,9 +8,9 @@
 import Foundation
 
 struct FeedPost {
-    let title: String
-    let author: String
+    let title: String?
+    let author: String?
     let thumbPath: String?
-    let comments: Int
-    let createdDate: String
+    let comments: Int?
+    let createdDate: String?
 }
