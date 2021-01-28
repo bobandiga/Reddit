@@ -27,6 +27,7 @@ final public class FeedService {
     private lazy var network: Networkable = RedditNetwork()
     private lazy var cache: URLCache = URLCache.shared
     
+    private lazy var queue: DispatchQueue = DispatchQueue(label: "FeedService", qos: .utility, attributes: .concurrent)
     public init() {}
     
 }
@@ -42,7 +43,10 @@ extension FeedService: NetworkService {
             return
         }
         
-        DispatchQueue.global(qos: .utility).async {
+        queue.async {
+            #if DEBUG
+            print("THREAD TASK: ", Thread.current)
+            #endif
             let task = self.prepareTask(request: request, completion)
             task.resume()
             self.semaphore.wait()
@@ -63,7 +67,10 @@ extension FeedService: NetworkService {
             return
         }
     
-        DispatchQueue.global(qos: .utility).async {
+        queue.async {
+            #if DEBUG
+            print("THREAD TASK: ", Thread.current)
+            #endif
             let task = self.prepareTask(request: request, completion)
             task.resume()
             self.semaphore.wait()

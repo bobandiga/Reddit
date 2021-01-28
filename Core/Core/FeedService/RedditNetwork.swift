@@ -39,8 +39,6 @@ private extension RedditNetwork {
         urlComponents.queryItems = request.parameters.compactMap { URLQueryItem(name: $0.key, value: $0.value) }
         guard let url = urlComponents.url else { return nil }
         
-        print("URL: ",url)
-        
         var urlRequest = URLRequest(url: url, cachePolicy: request.cachePolicy, timeoutInterval: request.timeout)
         urlRequest.allHTTPHeaderFields = headers
         urlRequest.httpMethod = request.method.rawValue

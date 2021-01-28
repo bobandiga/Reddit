@@ -13,6 +13,9 @@ final public class LoadImageView: UIImageView {
             return
         }
         task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            #if DEBUG
+            print("THREAD IMAGE: ", Thread.current)
+            #endif
             guard
                 error == nil,
                 let response = response as? HTTPURLResponse,

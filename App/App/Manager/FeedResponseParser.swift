@@ -15,7 +15,7 @@ struct TopResponse: Decodable {
     }
     
     var posts: [FeedPost] {
-        return data.children.map { FeedPost(title: $0.data.title, author: $0.data.author, thumbPath: nil, comments: $0.data.comments, createdDate: "") }
+        return data.children.map { FeedPost(title: $0.data.title, author: $0.data.author, thumbPath: $0.data.thumbnail, comments: $0.data.comments, createdDate: "") }
     }
 }
 
@@ -33,9 +33,10 @@ struct TopChildData: Decodable {
     let title: String?
     let created: TimeInterval?
     let comments: Int?
+    let thumbnail: String?
     
     private enum CodingKeys: String, CodingKey {
-        case author, title, created
+        case author, title, created, thumbnail
         case comments = "num_comments"
     }
    
@@ -45,6 +46,7 @@ struct TopChildData: Decodable {
         title = try container.decode(String.self, forKey: .title)
         created = try container.decode(TimeInterval.self, forKey: .created)
         comments = try container.decode(Int.self, forKey: .comments)
+        thumbnail = try container.decode(String.self, forKey: .thumbnail)
     }
     
 }
