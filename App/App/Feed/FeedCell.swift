@@ -14,7 +14,7 @@ final class FeedCell: UITableViewCell {
     @IBOutlet private weak var bodyLabel: UILabel?
     @IBOutlet private weak var numberOfComments: UILabel?
     @IBOutlet private weak var thumbImageView: LoadImageView?
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -24,22 +24,16 @@ final class FeedCell: UITableViewCell {
         numberOfComments?.text = nil
     }
     
-    var model: FeedPost? {
-        didSet {
-            guard let model = model else { return }
-            
-            setupTitle(for: model.author, date: model.createdDate)
-            setupBody(for: model.title)
-            setupComments(for: model.comments)
-            setupImageView(for: model.thumbPath)
-        }
-    }
-    
-    func endDisplay() {
-        thumbImageView?.cancelLoad()
-        bodyLabel?.text = nil
-        titleLabel?.text = nil
-        numberOfComments?.text = nil
+    func fill(post: FeedPost?) {
+        
+        selectionStyle = .none
+        
+        guard let model = post else { return }
+        
+        setupTitle(for: model.author, date: model.createdDate)
+        setupBody(for: model.title)
+        setupComments(for: model.comments)
+        setupImageView(for: model.thumbPath)
     }
     
 }

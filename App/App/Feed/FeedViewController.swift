@@ -44,8 +44,7 @@ final class FeedViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FeedCell.id, for: indexPath) as? FeedCell else {
             fatalError()
         }
-        cell.selectionStyle = .none
-        cell.model = feedManager.dataSource[indexPath.row]
+        cell.fill(post: feedManager.dataSource[indexPath.row])
         return cell
     }
     
@@ -53,7 +52,7 @@ final class FeedViewController: UITableViewController {
         guard viewDidApper else { return }
         if indexPath.row == feedManager.dataSource.count - 1 {
             showSpinner()
-            feedManager.loadMore { [unowned self] (e) in
+            feedManager.loadMore { [unowned self, unowned tableView] (e) in
                 hideSpinner()
                 tableView.reloadData()
             }
